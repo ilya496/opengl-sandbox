@@ -3,7 +3,7 @@
 #include "opengl.h"
 #include "Shader.h"
 #include "GLContext.h"
-#include "Math.h"
+#include "math/math.h"
 #include <iostream>
 
 static auto gStartTime = std::chrono::high_resolution_clock::now();
