@@ -1870,6 +1870,7 @@ typedef void (APIENTRYP PFNGLCLEARPROC)(GLbitfield mask);
 typedef void (APIENTRYP PFNGLCLEARCOLORPROC)(GLfloat red, GLfloat blue, GLfloat green, GLfloat alpha);
 typedef void (APIENTRYP PFNGLVIEWPORTPROC)(GLint x, GLint y, GLsizei width, GLsizei height);
 typedef void (APIENTRYP PFNGLGENBUFFERSPROC)(GLsizei n, GLuint* buffers);
+typedef void (APIENTRYP PFNGLDELETEBUFFERSPROC)(GLsizei n, const GLuint* buffers);
 typedef void (APIENTRYP PFNGLBINDBUFFERPROC)(GLenum target, GLuint buffer);
 typedef void (APIENTRYP PFNGLGENVERTEXARRAYSPROC)(GLsizei n, GLuint* arrays);
 typedef void (APIENTRYP PFNGLBINDVERTEXARRAYPROC)(GLuint array);
@@ -1908,6 +1909,8 @@ API PFNGLVIEWPORTPROC pglViewport;
 #define glViewport pglViewport
 API PFNGLGENBUFFERSPROC pglGenBuffers;
 #define glGenBuffers pglGenBuffers
+API PFNGLDELETEBUFFERSPROC pglDeleteBuffers;
+#define glDeleteBuffers pglDeleteBuffers;
 API PFNGLBINDBUFFERPROC pglBindBuffer;
 #define glBindBuffer pglBindBuffer
 API PFNGLBUFFERDATAPROC pglBufferData;

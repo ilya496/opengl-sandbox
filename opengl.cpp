@@ -4,6 +4,7 @@ PFNGLCLEARPROC pglClear = NULL;
 PFNGLCLEARCOLORPROC pglClearColor = NULL;
 PFNGLVIEWPORTPROC pglViewport = NULL;
 PFNGLGENBUFFERSPROC pglGenBuffers = NULL;
+PFNGLDELETEBUFFERSPROC pglDeleteBuffers = NULL;
 PFNGLBINDBUFFERPROC pglBindBuffer = NULL;
 PFNGLBUFFERDATAPROC pglBufferData = NULL;
 PFNGLGENVERTEXARRAYSPROC pglGenVertexArrays = NULL;
@@ -54,6 +55,7 @@ void LoadOpenGLFunctions() {
     pglGenBuffers = (PFNGLGENBUFFERSPROC)wglGetProcAddress("glGenBuffers");
     pglBindBuffer = (PFNGLBINDBUFFERPROC)wglGetProcAddress("glBindBuffer");
     pglBufferData = (PFNGLBUFFERDATAPROC)wglGetProcAddress("glBufferData");
+    pglDeleteBuffers = (PFNGLDELETEBUFFERSPROC)wglGetProcAddress("glDeleteBuffers");
     pglGenVertexArrays = (PFNGLGENVERTEXARRAYSPROC)wglGetProcAddress("glGenVertexArrays");
     pglBindVertexArray = (PFNGLBINDVERTEXARRAYPROC)wglGetProcAddress("glBindVertexArray");
     pglVertexAttribPointer = (PFNGLVERTEXATTRIBPOINTERPROC)wglGetProcAddress("glVertexAttribPointer");
