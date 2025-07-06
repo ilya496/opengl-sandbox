@@ -1,5 +1,14 @@
 #include "opengl.h"
 
+PFNGLCOLOR3FPROC pglColor3f = NULL;
+PFNGLBEGINPROC pglBegin = NULL;
+PFNGLENDPROC pglEnd = NULL;
+PFNGLVERTEX2FPROC pglVertex2f = NULL;
+PFNGLMATRIXMODEPROC pglMatrixMode = NULL;
+PFNGLLOADIDENTITYPROC pglLoadIdentity = NULL;
+PFNGLORTHOPROC pglOrtho = NULL;
+PFNGLTEXCOORD2FPROC pglTexCoord2f = NULL;
+
 PFNGLCLEARPROC pglClear = NULL;
 PFNGLCLEARCOLORPROC pglClearColor = NULL;
 PFNGLVIEWPORTPROC pglViewport = NULL;
@@ -34,6 +43,13 @@ PFNGLUNIFORM4FPROC pglUniform4f = NULL;
 PFNGLUNIFORM1IPROC pglUniform1i = NULL;
 PFNGLUNIFORM3FVPROC pglUniform3fv = NULL;
 PFNGLUNIFORMMATRIX4FVPROC pglUniformMatrix4fv = NULL;
+PFNGLGETACTIVEUNIFORMPROC pglGetActiveUniform = NULL;
+PFNGLENABLEPROC pglEnable = NULL;
+PFNGLGENTEXTURESPROC pglGenTextures = NULL;
+PFNGLBINDTEXTUREPROC pglBindTexture = NULL;
+PFNGLTEXIMAGE2DPROC pglTexImage2D = NULL;
+PFNGLTEXPARAMETERIPROC pglTexParameteri = NULL;
+PFNGLBLENDFUNCPROC pglBlendFunc = NULL;
 
 void LoadCoreOpenGLFunctions() {
     HMODULE ogl32 = LoadLibrary(L"opengl32.dll");
@@ -47,6 +63,18 @@ void LoadCoreOpenGLFunctions() {
     pglViewport = (PFNGLVIEWPORTPROC)GetProcAddress(ogl32, "glViewport");
     pglDrawArrays = (PFNGLDRAWARRAYSPROC)GetProcAddress(ogl32, "glDrawArrays");
     pglDrawElements = (PFNGLDRAWELEMENTSPROC)GetProcAddress(ogl32, "glDrawElements");
+    pglColor3f = (PFNGLCOLOR3FPROC)GetProcAddress(ogl32, "glColor3f");
+    pglBegin = (PFNGLBEGINPROC)GetProcAddress(ogl32, "glBegin");
+    pglEnd = (PFNGLENDPROC)GetProcAddress(ogl32, "glEnd");
+    pglVertex2f = (PFNGLVERTEX2FPROC)GetProcAddress(ogl32, "glVertex2f");
+    pglMatrixMode = (PFNGLMATRIXMODEPROC)GetProcAddress(ogl32, "glMatrixMode");
+    pglLoadIdentity = (PFNGLLOADIDENTITYPROC)GetProcAddress(ogl32, "glLoadIdentity");
+    pglOrtho = (PFNGLORTHOPROC)GetProcAddress(ogl32, "glOrtho");
+    pglTexCoord2f = (PFNGLTEXCOORD2FPROC)GetProcAddress(ogl32, "glTexCoord2f");
+    pglTexImage2D = (PFNGLTEXIMAGE2DPROC)GetProcAddress(ogl32, "glTexImage2D");
+    pglTexParameteri = (PFNGLTEXPARAMETERIPROC)GetProcAddress(ogl32, "glTexParameteri");
+    pglEnable = (PFNGLENABLEPROC)GetProcAddress(ogl32, "glEnable");
+    pglBlendFunc = (PFNGLBLENDFUNCPROC)GetProcAddress(ogl32, "glBlendFunc");
 }
 
 void LoadOpenGLFunctions() {
@@ -81,4 +109,11 @@ void LoadOpenGLFunctions() {
     pglUniform1i = (PFNGLUNIFORM1IPROC)wglGetProcAddress("glUniform1i");
     pglUniform3fv = (PFNGLUNIFORM3FVPROC)wglGetProcAddress("glUniform3fv");
     pglUniformMatrix4fv = (PFNGLUNIFORMMATRIX4FVPROC)wglGetProcAddress("glUniformMatrix4fv");
+    pglGetActiveUniform = (PFNGLGETACTIVEUNIFORMPROC)wglGetProcAddress("glGetActiveUniform");
+    //pglEnable = (PFNGLENABLEPROC)wglGetProcAddress("glEnable");
+    pglGenTextures = (PFNGLGENTEXTURESPROC)wglGetProcAddress("glGenTextures");
+    pglBindTexture = (PFNGLBINDTEXTUREPROC)wglGetProcAddress("glBindTexture");
+    //pglBlendFunc = (PFNGLBLENDFUNCPROC)wglGetProcAddress("glBlendFunc");
+    //pglTexImage2D = (PFNGLTEXIMAGE2DPROC)wglGetProcAddress("glTexImage2D");
+    //pglTexParameteri = (PFNGLTEXPARAMETERIPROC)wglGetProcAddress("glTexParameteri");
 }

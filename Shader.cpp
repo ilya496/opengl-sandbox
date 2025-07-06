@@ -41,6 +41,16 @@ void Shader::Set1f(const std::string& name, float value) const {
 	glUniform1f(GetUniformLocation(name), value);
 }
 
+void Shader::SetVec3f(const std::string& name, const math::vec3& vec) const
+{
+	glUniform3fv(GetUniformLocation(name), 1, &vec[0]);
+}
+
+void Shader::SetMat4f(const std::string& name, const math::mat4& mat) const
+{
+	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &mat[0][0]);
+}
+
 uint32_t Shader::CompileShader(uint32_t type, const char* source) const {
 	uint32_t id = glCreateShader(type);
 	glShaderSource(id, 1, &source, nullptr);

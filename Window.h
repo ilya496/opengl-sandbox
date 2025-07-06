@@ -1,26 +1,44 @@
 #pragma once
 
 #include <windows.h>
-#include <functional>
+#include <string>
+#include "math/math.h"
 
 class Window {
 public:
-    Window(const wchar_t* title, int width, int height);
     ~Window();
 
-    void Run();
-    HWND GetHWND() const;
-    HDC  GetHDC()  const;
+public:
+    static Window* Create(int width, int height, const std::string& title);
 
-    void SetRenderCallback(std::function<void()> fn);
-    void SetResizeCallback(std::function<void(int, int)> fn);
+    void ProcessMessages();
+    bool ShouldClose() const;
+
+    HWND GetHandle() const { return m_Hwnd; }
+
+    bool IsKeyDown(unsigned int vk) const;
+    bool IsMouseButtonDown(int button) const;
+    math::ivec2 GetMouseDelta() const;
+    math::ivec2 GetMousePosition() const;
 
 private:
-    HWND m_Hwnd;
-    HDC  m_Hdc;
+    Window(int width, int height, const std::string& title);
+    bool Init();
+    static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-    std::function<void()> onRender;
-    std::function<void(int, int)> onResize;
+private:
+    HWND m_Hwnd = nullptr;
+    HINSTANCE m_HInstance = nullptr;
+    std::wstring m_Title;
+    int m_Width;
+    int m_Height;
+    bool m_ShouldClose = false;
 
-    static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
+    bool m_Keys[256] = {};
+    bool m_MouseButtons[5] = {};
+
+    int m_MouseX = 0, m_MouseY = 0;
+    int m_LastMouseX = 0, m_LastMouseY = 0;
+    int m_MouseDeltaX = 0, m_MouseDeltaY = 0;
 };

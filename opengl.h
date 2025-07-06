@@ -1866,6 +1866,15 @@ typedef GLintptr GLvdpauSurfaceNV;
 #define GL_MAX_TEXTURE_MAX_ANISOTROPY 0x84FF
 #define GL_TRANSFORM_FEEDBACK_OVERFLOW 0x82EC
 
+typedef void (APIENTRYP PFNGLCOLOR3FPROC)(GLfloat red, GLfloat blue, GLfloat green);
+typedef void (APIENTRYP PFNGLBEGINPROC)(GLenum mode);
+typedef void (APIENTRYP PFNGLENDPROC)(void);
+typedef void (APIENTRYP PFNGLVERTEX2FPROC)(GLfloat x, GLfloat y);
+typedef void (APIENTRYP PFNGLMATRIXMODEPROC)(GLenum mode);
+typedef void (APIENTRYP PFNGLLOADIDENTITYPROC)(void);
+typedef void (APIENTRYP PFNGLORTHOPROC)(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble nearVal, GLdouble farVal);
+typedef void (APIENTRYP PFNGLTEXCOORD2FPROC)(GLfloat s, GLfloat t);
+
 typedef void (APIENTRYP PFNGLCLEARPROC)(GLbitfield mask);
 typedef void (APIENTRYP PFNGLCLEARCOLORPROC)(GLfloat red, GLfloat blue, GLfloat green, GLfloat alpha);
 typedef void (APIENTRYP PFNGLVIEWPORTPROC)(GLint x, GLint y, GLsizei width, GLsizei height);
@@ -1900,6 +1909,30 @@ typedef void (APIENTRYP PFNGLUNIFORM4FPROC)(GLint location, GLfloat v0, GLfloat 
 typedef void (APIENTRYP PFNGLUNIFORM1IPROC)(GLint location, GLint v0);
 typedef void (APIENTRYP PFNGLUNIFORM3FVPROC)(GLint location, GLsizei count, const GLfloat* value);
 typedef void (APIENTRYP PFNGLUNIFORMMATRIX4FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (APIENTRYP PFNGLGETACTIVEUNIFORMPROC)(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GLenum* type, GLchar* name);
+typedef void (APIENTRYP PFNGLENABLEPROC)(GLenum cap);
+typedef void (APIENTRYP PFNGLGENTEXTURESPROC)(GLsizei n, GLuint* textures);
+typedef void (APIENTRYP PFNGLBINDTEXTUREPROC)(GLenum target, GLuint texture);
+typedef void (APIENTRYP PFNGLTEXIMAGE2DPROC)(GLenum target, GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data);
+typedef void (APIENTRYP PFNGLTEXPARAMETERIPROC)(GLenum target, GLenum pname, GLint param);
+typedef void (APIENTRYP PFNGLBLENDFUNCPROC)(GLenum sfactor, GLenum dfactor);
+
+API PFNGLCOLOR3FPROC pglColor3f;
+#define glColor3f pglColor3f
+API PFNGLBEGINPROC pglBegin;
+#define glBegin pglBegin
+API PFNGLENDPROC pglEnd;
+#define glEnd pglEnd
+API PFNGLVERTEX2FPROC pglVertex2f;
+#define glVertex2f pglVertex2f
+API PFNGLMATRIXMODEPROC pglMatrixMode;
+#define glMatrixMode pglMatrixMode
+API PFNGLLOADIDENTITYPROC pglLoadIdentity;
+#define glLoadIdentity pglLoadIdentity
+API PFNGLORTHOPROC pglOrtho;
+#define glOrtho pglOrtho
+API PFNGLTEXCOORD2FPROC pglTexCoord2f;
+#define glTexCoord2f pglTexCoord2f
 
 API PFNGLCLEARPROC pglClear;
 #define glClear pglClear
@@ -1969,6 +2002,20 @@ API PFNGLUNIFORM3FVPROC pglUniform3fv;
 #define glUniform3fv pglUniform3fv
 API PFNGLUNIFORMMATRIX4FVPROC pglUniformMatrix4fv;
 #define glUniformMatrix4fv pglUniformMatrix4fv
+API PFNGLGETACTIVEUNIFORMPROC pglGetActiveUniform;
+#define glGetActiveUniform pglGetActiveUniform
+API PFNGLENABLEPROC pglEnable;
+#define glEnable pglEnable
+API PFNGLGENTEXTURESPROC pglGenTextures;
+#define glGenTextures pglGenTextures
+API PFNGLBINDTEXTUREPROC pglBindTexture;
+#define glBindTexture pglBindTexture
+API PFNGLTEXIMAGE2DPROC pglTexImage2D;
+#define glTexImage2D pglTexImage2D
+API PFNGLTEXPARAMETERIPROC pglTexParameteri;
+#define glTexParameteri pglTexParameteri
+API PFNGLBLENDFUNCPROC pglBlendFunc;
+#define glBlendFunc pglBlendFunc
 
 void LoadOpenGLFunctions();
 void LoadCoreOpenGLFunctions();

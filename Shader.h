@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <string> 
+#include "math/math.h"
 
 class Shader
 {
@@ -17,8 +18,8 @@ public:
 	void Set1f(const std::string& name, float value) const;
 	void Set4f(const std::string& name, float v0, float v1, float v2, float v3) const;
 	void Set3f(const std::string& name, float v0, float v1, float v2) const;
-	//void SetVec3f(const std::string& name, const glm::vec3& vec) const;
-	//void SetMat4f(const std::string& name, const glm::mat4& matrix) const;
+	void SetVec3f(const std::string& name, const math::vec3& vec) const;
+	void SetMat4f(const std::string& name, const math::mat4& matrix) const;
 
 	inline uint32_t GetID() const { return m_RendererID; }
 private:

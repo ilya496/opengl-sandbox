@@ -16,6 +16,10 @@ namespace math
 	typedef vec<3, float> vec3;
 	typedef vec<4, float> vec4;
 
+	typedef vec<2, int> ivec2;
+	typedef vec<3, int> ivec3;
+	typedef vec<4, int> ivec4;
+
 	typedef mat<2, 2, float> mat2;
 	typedef mat<3, 3, float> mat3;
 	typedef mat<4, 4, float> mat4;

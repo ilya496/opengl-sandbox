@@ -27,7 +27,7 @@ namespace math
             case 1:
                 return y;
             case 2:
-                return x;
+                return z;
             case 3:
                 return w;
             }

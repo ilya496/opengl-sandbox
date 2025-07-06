@@ -45,6 +45,47 @@ namespace math
             }
         }
 
+        type operator+(const type& other) const
+        {
+            return type(x + other.x, y + other.y, z + other.z);
+        }
+
+        type operator-(const type& other) const
+        {
+            return type(x - other.x, y - other.y, z - other.z);
+        }
+
+        T operator*(const type& other) const
+        {
+            return x * other.x + y * other.y + z * other.z;
+        }
+
+        type operator*(T scalar) const
+        {
+            return type(x * scalar, y * scalar, z * scalar);
+        }
+
+        type& operator+=(const type& other)
+        {
+            x += other.x;
+            y += other.y;
+            z += other.z;
+            return *this;
+        }
+
+        type& operator-=(const type& other)
+        {
+            x -= other.x;
+            y -= other.y;
+            z -= other.z;
+            return *this;
+        }
+
+        friend type operator*(T scalar, const type& v)
+        {
+            return type(v.x * scalar, v.y * scalar, v.z * scalar);
+        }
+
         friend std::ostream& operator<<(std::ostream& os, const type& vec)
         {
             return os << "vec3(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
